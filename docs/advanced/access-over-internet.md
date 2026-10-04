@@ -5,14 +5,14 @@ hide:
   # - toc
 ---
 
-Control your LEDs from anywhere. Pick a route below: Tailscale is the easiest, Cloudflare Tunnel gives you a login-protected public URL, HomeKit puts WLED in the Apple Home app, and Caddy, nginx, or Traefik work if you already run a reverse proxy at home.
+Control your LEDs from anywhere. Pick a route below: Tailscale/WireGuard is the easiest, Cloudflare Tunnel gives you a login-protected public URL, HomeKit puts WLED in the Apple Home app, and Caddy, nginx, or Traefik work if you already run a reverse proxy at home.
 
 Already controlling WLED through [Home Assistant](https://www.home-assistant.io/integrations/wled/)? If you can reach Home Assistant remotely, you have secure remote control and don't need anything on this page.
 
 !!! warning "Never port forward WLED"
     WLED has no login on its control interface and no HTTPS. Port forwarding it to the internet gives anyone full control of the device, including flashing new firmware. Every option below adds that missing security layer in front.
 
-=== "Tailscale"
+=== "Tailscale / WireGuard"
 
     [Tailscale](https://tailscale.com/) builds a private WireGuard network between your devices, so nothing is exposed to the public internet and you don't need to open ports or manage a domain and certificates. The free plan is enough for this.
 
@@ -30,7 +30,8 @@ Already controlling WLED through [Home Assistant](https://www.home-assistant.io/
 
     With Tailscale connected on your phone, open WLED's LAN IP in the browser or add it in the WLED app. Use the IP address, not `wled.local`, because mDNS names don't resolve across the tunnel. WLED also never gets a `.ts.net` name of its own, since it isn't running Tailscale. On a Linux client, run `sudo tailscale set --accept-routes` first; phones, Macs and Windows pick up the route on their own.
 
-    If you'd rather not rely on a third party, a plain [WireGuard](https://www.wireguard.com/) tunnel to your router or a self-hosted [Headscale](https://headscale.net/) control server gets you the same result with more setup.
+    !!! tip "Consider a plain WireGuard tunnel"
+        If you'd rather not rely on a third party, a plain [WireGuard](https://www.wireguard.com/) VPN tunnel to your router or other server in your home network, or a self-hosted [Headscale](https://headscale.net/) control server gets you the same result (access to all your local devices as if you were in your home network) with a bit more setup.
 
 === "Cloudflare Tunnel"
 
